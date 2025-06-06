@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Chandan Nath - Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          animation: {
+            'fade-in': 'fadeIn 0.5s ease-in-out',
+            'float': 'float 6s ease-in-out infinite',
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: 0, transform: 'translateY(20px)' },
+              '100%': { opacity: 1, transform: 'translateY(0)' }
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-20px)' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="icon" href="icons.png" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body
+  class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans leading-relaxed transition-colors duration-300 overflow-x-hidden">
+
+  <!-- Animated Background -->
+  <div class="fixed inset-0 -z-10">
+    <div class="absolute inset-0 bg-grid-light dark:bg-grid-dark bg-[length:40px_40px] opacity-5 dark:opacity-[0.03]">
+    </div>
+    <div
+      class="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-blue-50 dark:to-gray-800 opacity-30 dark:opacity-10">
+    </div>
+  </div>
+
+  <nav
+    class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md shadow-md fixed w-full z-50 top-0 transition-all duration-300">
+    <div class="container mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
+      <a href="#home"
+        class="text-xl sm:text-2xl font-bold text-gray-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 flex items-center">
+        <span class="bg-blue-600 text-white rounded px-3 py-0.5 mr-2">CN</span>
+        CHANDAN NATH
+      </a>
+
+      <!-- Mobile menu button -->
+      <button id="mobile-menu-button"
+        class="md:hidden p-2 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+
+      <div id="nav-links" class="hidden md:flex items-center space-x-4 lg:space-x-6">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        <button id="theme-toggle" type="button"
+          class="px-6 py-2 rounded focus:outline-none transition-colors duration-200 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">
+          <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+          </svg>
+          <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path
+              d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 4a1 1 0 011 1v1a1 1 0 11-2 0V7a1 1 0 011-1zm-4 8a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zm-4-4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zm10.586-2.586a1 1 0 010 1.414l-1 1a1 1 0 11-1.414-1.414l1-1a1 1 0 011.414 0zM5 10a1 1 0 01-1 1H3a1 1 0 110-2h1a1 1 0 011 1zm8.586 2.586a1 1 0 01-1.414 0l-1-1a1 1 0 111.414-1.414l1 1a1 1 0 010 1.414zM10 18a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM2.929 7.071a1 1 0 011.414 0l1 1a1 1 0 11-1.414 1.414l-1-1a1 1 0 010-1.414z">
+            </path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white/90 dark:bg-gray-800/90 backdrop-blur-md px-4 pb-4">
+      <div class="flex flex-col space-y-2">
+        <a href="#about"
+          class="block py-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">About</a>
+        <a href="#experience"
+          class="block py-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">Experience</a>
+        <a href="#projects"
+          class="block py-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">Projects</a>
+        <a href="#skills"
+          class="block py-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">Skills</a>
+        <a href="#contact"
+          class="block py-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">Contact</a>
+        <div class="pt-4 flex justify-center">
+          <button id="theme-toggle-mobile" type="button"
+            class="px-6 py-2 rounded-full focus:outline-none transition-colors duration-200 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">
+            <svg id="theme-toggle-dark-icon-mobile" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+            </svg>
+            <svg id="theme-toggle-light-icon-mobile" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 4a1 1 0 011 1v1a1 1 0 11-2 0V7a1 1 0 011-1zm-4 8a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zm-4-4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zm10.586-2.586a1 1 0 010 1.414l-1 1a1 1 0 11-1.414-1.414l1-1a1 1 0 011.414 0zM5 10a1 1 0 01-1 1H3a1 1 0 110-2h1a1 1 0 011 1zm8.586 2.586a1 1 0 01-1.414 0l-1-1a1 1 0 111.414-1.414l1 1a1 1 0 010 1.414zM10 18a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM2.929 7.071a1 1 0 011.414 0l1 1a1 1 0 11-1.414 1.414l-1-1a1 1 0 010-1.414z">
+              </path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container mx-auto px-4 sm:px-6 py-24 pt-20 md:pt-32">
+    <!-- Hero Section -->
+    <section id="home" class="min-h-[80vh] flex items-center mb-16 sm:mb-24">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="order-2 lg:order-1 text-center lg:text-left animate-fade-in">
+          <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-900 dark:text-white mb-4 leading-tight">
+            <span class="block">Chandan Nath</span>
+            <span class="text-blue-600 dark:text-blue-400 text-2xl sm:text-3xl md:text-4xl font-semibold">Full Stack
+              Developer & Finance Specialist</span>
+          </h1>
+          <p class="text-xl text-gray-700 dark:text-gray-300 mb-8 max-w-2xl mx-auto lg:mx-0">
+            Creating innovative solutions at the intersection of technology and finance with 18+ years of industry
+            experience.
+          </p>
+          <div class="flex flex-wrap justify-center lg:justify-start gap-4">
+            <a href="#contact"
+              class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded transition-all duration-300 transform hover:-translate-y-1 shadow-lg">
+              Get In Touch
+            </a>
+            <a href="#projects"
+              class="bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 border border-blue-600 text-blue-600 dark:text-blue-400 font-bold py-3 px-8 rounded transition-all duration-300 transform hover:-translate-y-1 shadow-lg">
+              View Projects
+            </a>
+          </div>
+          <div class="mt-12 flex justify-center lg:justify-start space-x-6">
+            <a href="https://www.linkedin.com/in/chandan-nath-189081223/"
+              class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 text-2xl">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+            <a href="https://github.com/music-of-the-silence"
+              class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 text-2xl">
+              <i class="fa-brands fa-github"></i>
+            </a>
+            <a href="https://x.com/ChandanNat30376"
+              class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 text-2xl">
+              <i class="fa-brands fa-x-twitter"></i>
+            </a>
+          </div>
+        </div>
+        <div class="order-1 lg:order-2 flex justify-center animate-float">
+          <div class="relative">
+            <div class="absolute -inset-4 bg-blue-600 dark:bg-blue-400 rounded-full blur-xl opacity-30"></div>
+            <div class="w-64 h-96 lg:w-[320px] lg:h-[480px] relative overflow-hidden">
+              <!-- Profile image placeholder -->
+              <div class="absolute inset-0 flex items-center justify-center text-gray-400">
+                <img src="./profile.png" alt="Portrait of Chandan Nath" class=" object-cover shadow-lg rounded">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about"
+      class="bg-white dark:bg-gray-800 shadow-xl rounded p-6 sm:p-8 mb-16 sm:mb-24 transform transition-all duration-500 hover:shadow-2xl">
+      <h2 class="section-heading">About Me</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+        <div class="md:col-span-2">
+          <p class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+            I'm a dynamic professional with more than 18 years' experience in Finance, Stock maintenance functions and
+            Full Stack Development. I create dynamic and responsive web applications using modern frameworks and
+            technologies while leveraging my extensive background in financial operations.
+          </p>
+          <div class="bg-blue-50 dark:bg-blue-900/20 rounded p-6 border-l-4 border-blue-600">
+            <p class="text-blue-800 dark:text-blue-200 font-medium">
+              "Expertise in Full Stack Development, Reconciliation, Invoicing, Provisioning, and Achieving Commercial
+              Targets."
+            </p>
+          </div>
+        </div>
+        <div class="bg-gray-50 dark:bg-gray-700/50 rounded p-6">
+          <div class="flex items-center mb-4">
+            <div class="bg-blue-100 dark:bg-blue-900/30 p-3 rounded mr-4">
+              <i class="fas fa-map-marker-alt text-blue-600 dark:text-blue-400 text-xl"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-gray-800 dark:text-gray-200">Location</h3>
+              <p class="text-gray-600 dark:text-gray-400">Diara, Singur, Hooghly, West Bengal, India</p>
+            </div>
+          </div>
+          <div class="flex items-center mb-4">
+            <div class="bg-blue-100 dark:bg-blue-900/30 p-3 rounded mr-4">
+              <i class="fas fa-envelope text-blue-600 dark:text-blue-400 text-xl"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-gray-800 dark:text-gray-200">Email</h3>
+              <p class="text-gray-600 dark:text-gray-400">chandan.nath2006@gmail.com</p>
+              <p class="text-gray-600 dark:text-gray-400">nath.chandan1385@gmail.com</p>
+            </div>
+          </div>
+          <div class="flex items-center">
+            <div class="bg-blue-100 dark:bg-blue-900/30 p-3 rounded mr-4">
+              <i class="fas fa-phone text-blue-600 dark:text-blue-400 text-xl"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-gray-800 dark:text-gray-200">Phone</h3>
+              <p class="text-gray-600 dark:text-gray-400">+91 98311 74162</p>
+              <p class="text-gray-600 dark:text-gray-400">+91 98307 85857</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience"
+      class="bg-white dark:bg-gray-800 shadow-xl rounded p-6 sm:p-8 mb-16 sm:mb-24 transform transition-all duration-500 hover:shadow-2xl">
+      <h2 class="section-heading">Professional Experience</h2>
+
+      <div class="timeline relative pl-8 border-l-2 border-blue-600 dark:border-blue-400 ml-4">
+
+        <div class="timeline-item mb-12">
+
+          <div
+            class="bg-gray-100 mb-4 dark:bg-gray-700 rounded p-6 shadow-sm transition-all duration-300 hover:shadow-md relative ">
+            <div
+              class="absolute -left-3 top-2 w-6 h-6 rounded-full bg-blue-600 dark:bg-blue-400 border-4 border-white dark:border-gray-800">
+            </div>
+            <div class="flex flex-wrap justify-between items-start mb-4">
+              <h3 class="text-xl sm:text-2xl font-semibold text-gray-800 dark:text-white">Full Stack Web Developer</h3>
+              <span
+                class="bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200 text-sm font-semibold px-3 py-1 rounded-full">Jul
+                2023 – Present</span>
+            </div>
+            <p class="text-lg  my-2 font-bold text-blue-600 dark:text-blue-400">Novum Labs Pvt. Ltd. – Madhyamgram, West
+              Bengal, India
+            </p>
+            <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+              <li class="flex items-start">
+                <span class="text-blue-600 dark:text-blue-400 mr-2 font-extrabold">•</span>
+                <span>Creating and maintaining dynamic web applications using modern frameworks and technologies.</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 dark:text-blue-400 mr-2 font-extrabold">•</span>
+                <span>Teaching programming languages and frameworks to aspiring developers.</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 dark:text-blue-400 mr-2 font-extrabold">•</span>
+                <span>Developing internal tools to improve operational efficiency.</span>
+              </li>
+            </ul>
+          </div>
+          <div
+            class="bg-gray-100 mb-4 dark:bg-gray-700 rounded p-6 shadow-sm transition-all duration-300 hover:shadow-md relative">
+            <div
+              class="absolute -left-3 top-2 w-6 h-6 rounded-full bg-blue-600 dark:bg-blue-400 border-4 border-white dark:border-gray-800">
+            </div>
+            <div class="flex flex-wrap justify-between items-start mb-4">
+              <h3 class="text-xl sm:text-2xl font-semibold text-gray-800 dark:text-white">Billing Executive</h3>
+              <span
+                class="bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200 text-sm font-semibold px-3 py-1 rounded-full">Dec
+                2021 – Jul 2022</span>
+            </div>
+            <p class="text-lg my-2 font-bold text-blue-600 dark:text-blue-400">CLIFFORD FACILITY SERVICES PVT. LTD. –
+              Kolkata HO
+            </p>
+            <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+              <li class="flex items-start">
+                <span class="text-blue-600 dark:text-blue-400 mr-2 font-extrabold">•</span>
+                <span>Prepared invoices of the Govt. as well as nationalized banks across Pan India and booked same in
+                  Tally ERP monthly.</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 dark:text-blue-400 mr-2 font-extrabold">•</span>
+                <span>Handled Govt. as well as nationalized bank at a regular basis for various operation issues and
+                  payment follow-ups.</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 dark:text-blue-400 mr-2 font-extrabold">•</span>
+                <span>Collected cheques from Govt. customers as well as banks.</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 dark:text-blue-400 mr-2 font-extrabold">•</span>
+                <span>Managed wage creation for security staffs after maintaining compliances on a monthly basis.</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 dark:text-blue-400 mr-2 font-extrabold">•</span>
+                <span>Facilitated vendor payment and wage disbursement through bank and cash.</span>
+              </li>
+            </ul>
+          </div>
+          <div
+            class="bg-gray-100 mb-4 dark:bg-gray-700 rounded p-6 shadow-sm transition-all duration-300 hover:shadow-md relative">
+            <div
+              class="absolute -left-3 top-2 w-6 h-6 rounded-full bg-blue-600 dark:bg-blue-400 border-4 border-white dark:border-gray-800">
+            </div>
+            <div class="flex flex-wrap justify-between items-start mb-4">
+              <h3 class="text-xl sm:text-2xl font-semibold text-gray-800 dark:text-white">Branch Finance Support</h3>
+              <span
+                class="bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200 text-sm font-semibold px-3 py-1 rounded-full">Aug
+                2013 — May 2020</span>
+            </div>
+            <p class="text-lg  my-2 font-bold text-blue-600 dark:text-blue-400">G4S Secure Solutions (India) Private
+              Limited. – Howrah & Kolkata Central
+            </p>
+            <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+              <li class="flex items-start">
+                <span class="text-blue-600 dark:text-blue-400 mr-2 font-extrabold">•</span>
+                <span>Prepared over 400 invoices of clients with a value of 4.5Cr and booked same in ERP monthly.</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 dark:text-blue-400 mr-2 font-extrabold">•</span>
+                <span>Handled 250 customers such as TATA, ITC, HUL, CESC, HINDALCO, JINDAL, at a regular basis for
+                  various operation issues
+                  and payment follow up.</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 dark:text-blue-400 mr-2 font-extrabold">•</span>
+                <span>Collected cheques from customers.</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 dark:text-blue-400 mr-2 font-extrabold">•</span>
+                <span>Facilitated vendor payment and wage disbursement through bank and cash.</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 dark:text-blue-400 mr-2 font-extrabold">•</span>
+                <span>Ensured cost control & branch profitability as per budgeted PIBITA.</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 dark:text-blue-400 mr-2 font-extrabold">•</span>
+                <span>Maintained AR, AP, GL books in ERP platform.</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-xl font-semibold text-gray-800 dark:text-gray-200">Achievements:</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 dark:text-blue-400 mr-2 font-extrabold">•</span>
+                <span>Achieved YTD target each year since 2015 including PIBITA.</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 dark:text-blue-400 mr-2 font-extrabold">•</span>
+                <span>Achieved Revenue YTD and the Lowest DSO in 2019.</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 dark:text-blue-400 mr-2 font-extrabold">•</span>
+                <span>Provided commercial support of 2 branches - Kolkata Central & Howrah.</span>
+              </li>
+            </ul>
+          </div>
+          <div
+            class="bg-gray-100 mb-4 dark:bg-gray-700 rounded p-6 shadow-sm transition-all duration-300 hover:shadow-md relative">
+            <div
+              class="absolute -left-3 top-2 w-6 h-6 rounded-full bg-blue-600 dark:bg-blue-400 border-4 border-white dark:border-gray-800">
+            </div>
+            <div class="flex flex-wrap justify-between items-start mb-4">
+              <h3 class="text-xl sm:text-2xl font-semibold text-gray-800 dark:text-white">Collection Agent</h3>
+              <span
+                class="bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200 text-sm font-semibold px-3 py-1 rounded-full">Jul
+                2008 – Jul 2013</span>
+            </div>
+            <p class="text-lg my-2 font-bold text-blue-600 dark:text-blue-400">IKB Associates. – Kolkata
+            </p>
+            <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+              <li class="flex items-start">
+                <span class="text-blue-600 dark:text-blue-400 mr-2 font-extrabold">•</span>
+                <span>Managed collections of EMIs for Personnel Loan, Credit Card.</span>
+              </li>
+            </ul>
+          </div>
+          <div
+            class="bg-gray-100 mb-4 dark:bg-gray-700 rounded p-6 shadow-sm transition-all duration-300 hover:shadow-md relative">
+            <div
+              class="absolute -left-3 top-2 w-6 h-6 rounded-full bg-blue-600 dark:bg-blue-400 border-4 border-white dark:border-gray-800">
+            </div>
+            <div class="flex flex-wrap justify-between items-start mb-4">
+              <h3 class="text-xl sm:text-2xl font-semibold text-gray-800 dark:text-white">Stock & Production Coordinator
+              </h3>
+              <span
+                class="bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200 text-sm font-semibold px-3 py-1 rounded-full">Jul
+                2005 – Jul 2008</span>
+            </div>
+            <p class="text-lg my-2 font-bold text-blue-600 dark:text-blue-400">Bentec India Ltd. – Kolkata
+            </p>
+            <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+              <li class="flex items-start">
+                <span class="text-blue-600 dark:text-blue-400 mr-2 font-extrabold">•</span>
+                <span>Maintained stock at Liluah Plant.</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 dark:text-blue-400 mr-2 font-extrabold">•</span>
+                <span>Followed up the production at a glance, such as raw material base creation, paint, assemble,
+                  packing and dispatch units
+                  at Liluah Plant.</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 dark:text-blue-400 mr-2 font-extrabold">•</span>
+                <span>Identified deviations if any, recommending remedial measures and reporting the same to the
+                  management.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Other timeline items here (similar structure) -->
+
+      </div>
+    </section>
+
+    <section id="projects"
+      class="bg-white dark:bg-gray-800 shadow-xl rounded p-6 sm:p-8 mb-16 sm:mb-24 transform transition-all duration-500 hover:shadow-2xl">
+      <h2 class="section-heading">Featured Projects</h2>
+
+      <div class="mb-8 flex flex-wrap justify-center gap-4">
+        <button class="project-filter active" data-filter="all">All Projects</button>
+        <button class="project-filter" data-filter="web">Web Development</button>
+        <button class="project-filter" data-filter="portfolio">Portfolio</button>
+        <button class="project-filter" data-filter="education">Education</button>
+        <button class="project-filter" data-filter="medical">Medical</button>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <div class="project-card" data-category="web">
+          <div class="rounded w-full h-48 mb-4 overflow-hidden">
+            <img src="project1.png" alt="Next.js Project" class="w-full h-full object-cover">
+          </div>
+          <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Company Portfolio</h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">Showcasing the company's projects and achievements with a
+            modern design.</p>
+          <div class="flex flex-wrap gap-2">
+            <a href="https://www.designworld.io" class="tech-tag">Live Demo</a>
+            <span class="tech-tag">Next.js</span>
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">Framer Motion</span>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="portfolio">
+          <div class="rounded w-full h-48 mb-4 overflow-hidden">
+            <img src="project2.png" alt="Next.js Project" class="w-full h-full object-cover">
+          </div>
+          <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Graphics Designer's Portfolio</h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">Showcasing a collection of design projects and visual
+            artwork.</p>
+          <div class="flex flex-wrap gap-2">
+            <a href="https://www.portfolio.designworld.io" class="tech-tag">Live Demo</a>
+            <span class="tech-tag">Three.js</span>
+            <span class="tech-tag">React.js</span>
+            <span class="tech-tag">3D Model</span>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="portfolio">
+          <div class="rounded w-full h-48 mb-4 overflow-hidden">
+            <img src="project7.png" alt="Next.js Project" class="w-full h-full object-cover">
+          </div>
+          <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Cinematographer's Portfolio</h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">Showcasing a collection of cinematography projects and
+            resources.</p>
+          <div class="flex flex-wrap gap-2">
+            <a href="https://react.designworld.io/" class="tech-tag">Live Demo</a>
+            <span class="tech-tag">HTML</span>
+            <span class="tech-tag">CSS</span>
+            <span class="tech-tag">React.js</span>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="portfolio">
+          <div class="rounded w-full h-48 mb-4 overflow-hidden">
+            <img src="project5.png" alt="Next.js Project" class="w-full h-full object-cover">
+          </div>
+          <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Political Activist's Portfolio</h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">Showcasing a collection of political activist's projects and
+            resources.</p>
+          <div class="flex flex-wrap gap-2">
+            <a href="https://www.punyabratagun.com/" class="tech-tag">Live Demo</a>
+            <span class="tech-tag">HTML</span>
+            <span class="tech-tag">CSS</span>
+            <span class="tech-tag">JavaScript</span>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="portfolio">
+          <div class="rounded w-full h-48 mb-4 overflow-hidden">
+            <img src="project6.png" alt="Next.js Project" class="w-full h-full object-cover">
+          </div>
+          <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Social Activist's Portfolio</h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">Showcasing a collection of social activist's projects and
+            resources.</p>
+          <div class="flex flex-wrap gap-2">
+            <a href="https://janaswasthyakatha.com/" class="tech-tag">Live Demo</a>
+            <span class="tech-tag">HTML</span>
+            <span class="tech-tag">CSS</span>
+            <span class="tech-tag">JavaScript</span>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="education">
+          <div class="rounded w-full h-48 mb-4 overflow-hidden">
+            <img src="project3.png" alt="Next.js Project" class="w-full h-full object-cover">
+          </div>
+          <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Educational Institute</h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">Showcasing a collection of educational projects and
+            resources.</p>
+          <div class="flex flex-wrap gap-2">
+            <a href="https://www.novumlabs.net" class="tech-tag">Live Demo</a>
+            <span class="tech-tag">HTML</span>
+            <span class="tech-tag">CSS</span>
+            <span class="tech-tag">JavaScript</span>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="education">
+          <div class="rounded w-full h-48 mb-4 overflow-hidden">
+            <img src="project9.png" alt="Next.js Project" class="w-full h-full object-cover">
+          </div>
+          <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Educational Institute</h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">Showcasing a collection of educational projects and
+            resources.</p>
+          <div class="flex flex-wrap gap-2">
+            <a href="https://stepsclasses.com/" class="tech-tag">Live Demo</a>
+            <span class="tech-tag">GSap</span>
+            <span class="tech-tag">CSS</span>
+            <span class="tech-tag">JavaScript</span>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="medical">
+          <div class="rounded w-full h-48 mb-4 overflow-hidden">
+            <img src="project4.png" alt="Next.js Project" class="w-full h-full object-cover">
+          </div>
+          <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Doctor's Portfolio</h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">Showcasing a collection of medical projects and
+            resources.</p>
+          <div class="flex flex-wrap gap-2">
+            <a href="https://www.manojitsarkar.in" class="tech-tag">Live Demo</a>
+            <span class="tech-tag">HTML</span>
+            <span class="tech-tag">Tailwind CSS</span>
+            <span class="tech-tag">JavaScript</span>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="medical">
+          <div class="rounded w-full h-48 mb-4 overflow-hidden">
+            <img src="project8.png" alt="Next.js Project" class="w-full h-full object-cover">
+          </div>
+          <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Pharmaceuticals Company</h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">Showcasing a collection of medical products and
+            values.</p>
+          <div class="flex flex-wrap gap-2">
+            <a href="https://beaconpharma.io/" class="tech-tag">Live Demo</a>
+            <span class="tech-tag">HTML</span>
+            <span class="tech-tag">CSS</span>
+            <span class="tech-tag">JavaScript</span>
+          </div>
+        </div>
+
+        <!-- More project cards -->
+
+      </div>
+    </section>
+
+    <section id="skills"
+      class="bg-white dark:bg-gray-800 shadow-xl rounded p-4 sm:p-6 mb-16 sm:mb-24 transform transition-all duration-500 hover:shadow-2xl">
+      <h2 class="section-heading">Skills & Expertise</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div>
+          <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-6 flex items-center">
+            <i class="fas fa-code text-blue-600 dark:text-blue-400 mr-3"></i>
+            Technical Skills
+          </h3>
+          <div class="space-y-6">
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="font-medium text-gray-700 dark:text-gray-300">HTML</span>
+                <span class="text-gray-600 dark:text-gray-400">95%</span>
+              </div>
+              <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                <div class="h-full bg-blue-600 dark:bg-blue-400 rounded-full" style="width: 95%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="font-medium text-gray-700 dark:text-gray-300">CSS/Tailwind CSS/ Bootstrap</span>
+                <span class="text-gray-600 dark:text-gray-400">90%</span>
+              </div>
+              <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                <div class="h-full bg-blue-600 dark:bg-blue-400 rounded-full" style="width: 90%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="font-medium text-gray-700 dark:text-gray-300">JavaScript/React/Next</span>
+                <span class="text-gray-600 dark:text-gray-400">90%</span>
+              </div>
+              <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                <div class="h-full bg-blue-600 dark:bg-blue-400 rounded-full" style="width: 90%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="font-medium text-gray-700 dark:text-gray-300">SQL/MongoDB</span>
+                <span class="text-gray-600 dark:text-gray-400">75%</span>
+              </div>
+              <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                <div class="h-full bg-blue-600 dark:bg-blue-400 rounded-full" style="width: 75%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="font-medium text-gray-700 dark:text-gray-300">Node.js</span>
+                <span class="text-gray-600 dark:text-gray-400">85%</span>
+              </div>
+              <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                <div class="h-full bg-blue-600 dark:bg-blue-400 rounded-full" style="width: 85%"></div>
+              </div>
+            </div>
+            <!-- More skill bars -->
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-6 flex items-center">
+            <i class="fas fa-chart-pie text-blue-600 dark:text-blue-400 mr-3"></i>
+            Professional Expertise
+          </h3>
+
+          <div class="grid grid-cols-1 gap-4">
+
+            <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded border border-gray-100 dark:border-gray-700">
+              <div class="flex gap-2 text-blue-600 dark:text-blue-400 text-2xl mb-3">
+                <i class="fa-solid fa-handshake"></i>
+                <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-1 text-base">Collaboration</h4>
+              </div>
+              <p class="text-sm text-gray-600 dark:text-gray-400">Coordinates with cross-functional teams to fulfil the
+                target</p>
+            </div>
+
+            <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded border border-gray-100 dark:border-gray-700">
+              <div class="flex gap-2 text-blue-600 dark:text-blue-400 text-2xl mb-3">
+                <i class="fas fa-file-invoice"></i>
+                <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-1 text-base">Invoicing</h4>
+              </div>
+              <p class="text-sm text-gray-600 dark:text-gray-400">Automated solutions for large enterprises</p>
+            </div>
+
+            <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded border border-gray-100 dark:border-gray-700">
+              <div class="flex gap-2 text-blue-600 dark:text-blue-400 text-2xl mb-3">
+                <i class="fa-solid fa-money-bill-1-wave"></i>
+                <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-1 text-base">Collection</h4>
+              </div>
+              <p class="text-sm text-gray-600 dark:text-gray-400">Follow-ups in time for company growth</p>
+            </div>
+            <!-- More expertise cards -->
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-6 flex items-center">
+            <i class="fa-solid fa-language text-blue-600 dark:text-blue-400 mr-3"></i>
+            Language Expertise
+          </h3>
+
+          <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded border border-gray-100 dark:border-gray-700 mb-6">
+            <div class="flex items-end text-blue-600 dark:text-blue-400 text-2xl mb-2">
+              <span class="mb-0.5">E</span>
+              <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-1 text-base">nglish</h4>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-400">Fluent in English, reading, written and spoken</p>
+          </div>
+
+          <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded border border-gray-100 dark:border-gray-700 mb-6">
+            <div class="flex items-end text-blue-600 dark:text-blue-400 text-2xl mb-2">
+              <span class="mb-0.5">H</span>
+              <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-1 text-base">indi</h4>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-400">Fluent in Hindi, reading, writing and spoken</p>
+          </div>
+
+          <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded border border-gray-100 dark:border-gray-700 mb-6">
+            <div class="flex items-end text-blue-600 dark:text-blue-400 text-2xl mb-2">
+              <span class="mb-0.5">B</span>
+              <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-1 text-base">engali</h4>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-400">Fluent in Bengali, reading, writing and spoken</p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <section id="contact"
+      class="bg-white dark:bg-gray-800 shadow-xl rounded p-6 sm:p-8 mb-4 transform transition-all duration-500 hover:shadow-2xl">
+      <h2 class="section-heading">Get In Touch</h2>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div>
+          <p class="text-lg text-gray-700 dark:text-gray-300 mb-8">
+            Have a project in mind or want to discuss opportunities? Feel free to reach out using the contact form or
+            through my direct contact information.
+          </p>
+
+          <div class="space-y-4 md:space-y-16">
+            <div class="flex items-start">
+              <div class="bg-blue-100 dark:bg-blue-900/30 p-3 rounded mr-4">
+                <i class="fas fa-map-marker-alt text-blue-600 dark:text-blue-400 text-xl"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-gray-800 dark:text-gray-200 text-lg mb-1">Location</h3>
+                <p class="text-gray-600 dark:text-gray-400">Diara, Singur, Hooghly, West Bengal, India</p>
+              </div>
+            </div>
+
+            <div class="flex items-start">
+              <div class="bg-blue-100 dark:bg-blue-900/30 p-3 rounded mr-4">
+                <i class="fas fa-envelope text-blue-600 dark:text-blue-400 text-xl"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-gray-800 dark:text-gray-200 text-lg mb-1">Email</h3>
+                <p class="text-gray-600 dark:text-gray-400">
+                  <a href="mailto:chandan.nath2006@gmail.com">chandan.nath2006@gmail.com</a>
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start">
+              <div class="bg-blue-100 dark:bg-blue-900/30 p-3 rounded mr-4">
+                <i class="fas fa-phone text-blue-600 dark:text-blue-400 text-xl"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-gray-800 dark:text-gray-200">Phone</h3>
+                <p class="text-gray-600 dark:text-gray-400 flex flex-col sm:flex-row gap-2">
+                  <span class="mb-1">Feel free to call me at:</span>
+                  <a href="tel:+919830785857" class="mb-1">+91 98307 85857</a>
+                  <a href="tel:+919831174162">+91 98311 74162</a>
+                </p>
+              </div>
+            </div>
+            <!-- More contact info -->
+          </div>
+        </div>
+
+        <div>
+          <form id="contact-form" class="space-y-6">
+            <div>
+              <label for="name" class="block text-gray-700 dark:text-gray-300 mb-2">Name</label>
+              <input type="text" id="name"
+                class="w-full px-4 py-3 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                placeholder="Your name">
+            </div>
+
+            <div>
+              <label for="email" class="block text-gray-700 dark:text-gray-300 mb-2">Email</label>
+              <input type="email" id="email"
+                class="w-full px-4 py-3 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                placeholder="Your email">
+            </div>
+
+            <div>
+              <label for="message" class="block text-gray-700 dark:text-gray-300 mb-2">Message</label>
+              <textarea id="message" rows="5"
+                class="w-full px-4 py-3 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                placeholder="Your message"></textarea>
+            </div>
+
+            <button type="submit"
+              class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded transition-all duration-300 transform hover:-translate-y-1 shadow-lg w-full">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-gray-800 dark:bg-gray-900 text-gray-300 dark:text-gray-500 py-12">
+    <div class="container mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="md:col-span-2">
+          <h3 class="text-xl font-bold text-white mb-4">Chandan Nath</h3>
+          <p class="mb-4">
+            Full Stack Developer and Finance Professional creating innovative solutions at the intersection of
+            technology and business operations.
+          </p>
+          <div class="flex space-x-4">
+            <a href="https://www.linkedin.com/in/chandan-nath-189081223/"
+              class="text-gray-400 hover:text-white transition-colors duration-300">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+            <a href="https://github.com/music-of-the-silence"
+              class="text-gray-400 hover:text-white transition-colors duration-300">
+              <i class="fa-brands fa-github"></i>
+            </a>
+            <a href="https://x.com/ChandanNat30376"
+              class="text-gray-400 hover:text-white transition-colors duration-300">
+              <i class="fa-brands fa-x-twitter"></i>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-bold text-white mb-4">Navigation</h4>
+          <ul class="space-y-2">
+            <li><a href="#about" class="text-gray-400 hover:text-white transition-colors duration-300">About</a></li>
+            <li><a href="#experience"
+                class="text-gray-400 hover:text-white transition-colors duration-300">Experience</a></li>
+            <li><a href="#projects" class="text-gray-400 hover:text-white transition-colors duration-300">Projects</a>
+            </li>
+            <li><a href="#skills" class="text-gray-400 hover:text-white transition-colors duration-300">Skills</a></li>
+            <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors duration-300">Contact</a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-bold text-white mb-4">Contact</h4>
+          <ul class="space-y-2">
+            <li class="flex items-start">
+              <i class="fa-solid fa-location-dot text-blue-400 mt-1 mr-3"></i>
+              <span>Singur, Hooghly, West Bengal, India</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa-solid fa-envelope text-blue-400 mt-1 mr-3"></i>
+              <span>chandan.nath2006@gmail.com</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa-solid fa-phone text-blue-400 mt-1 mr-3"></i>
+              <span>9831174162, 9830785857</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa-brands fa-whatsapp text-blue-400 mt-1 mr-3"></i>
+              <span>9830785857</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-700 mt-12 pt-8 text-center">
+        <p class="mb-2">I hereby confirm that the above information in this website is accurate & true to the best of my
+          knowledge.</p>
+        <p class="mb-2">Date: <span id="currentDate"></span> | Place: Diara</p>
+        <p>&copy; <span id="currentYear"></span> Chandan Nath. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
