@@ -158,20 +158,22 @@ document.addEventListener("DOMContentLoaded", () => {
   gsap.registerPlugin(ScrollTrigger);
 
   // Animate sections on scroll
-  gsap.utils
-    .toArray(".section-heading, .project-card, .timeline-item")
-    .forEach((element) => {
-      gsap.from(element, {
-        opacity: 0,
-        y: 50,
-        duration: 0.8,
-        scrollTrigger: {
-          trigger: element,
-          start: "top 90%",
-          toggleActions: "play none none none",
-        },
-      });
-    });
+  gsap.utils.toArray(".section-heading, .project-card, .timeline-item").forEach((element) => {
+  gsap.fromTo(element,
+    { opacity: 0, y: 50 }, // Initial state
+    {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      scrollTrigger: {
+        trigger: element,
+        start: "top 90%",
+        toggleActions: "play none play reset", // Reset on leave
+        onLeaveBack: self => self.progress(0) // Reset when scrolled back past
+      }
+    }
+  );
+});
 
   // Animate skill bars
   document.querySelectorAll(".h-full").forEach((bar) => {
